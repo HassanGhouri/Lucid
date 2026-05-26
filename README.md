@@ -37,8 +37,8 @@ Lucid is evaluated on a hand-curated 100-question benchmark across four real aca
 |---|---:|
 | *Reinforcement Learning: An Introduction* (Sutton & Barto) | 30 |
 | *Operating Systems: Three Easy Pieces* | 30 |
-| *CSC263 Data Structures and Analysis* (course notes) | 25 |
-| *MAT102 Introduction to Mathematical Proofs* (course notes) | 15 |
+| *Data Structures and Analysis* (course notes) | 25 |
+| *Introduction to Mathematical Proofs* (course notes) | 15 |
 
 - **Difficulty distribution:** 72 medium, 18 easy, 10 hard.
 - **Question type distribution:** 40 conceptual, 33 comparison, 18 factual, 9 synthesis.
