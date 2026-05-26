@@ -1,0 +1,19 @@
+[theme]
+# Dark mode as the baseline — the app's custom CSS is designed for dark.
+base = "dark"
+
+# Single calm accent for buttons, focus rings, sliders, links.
+# Coexists with the per-doc tag colors without fighting them.
+primaryColor = "#5b8def"
+
+# Slightly warmer than Streamlit's clinical #0e1117.
+backgroundColor = "#0f1217"
+
+# Sidebar / containers / code blocks — one subtle step up from background.
+secondaryBackgroundColor = "#1a1d24"
+
+# Soft white. Pure white (#ffffff) is harsh on dark backgrounds.
+textColor = "#e5e7eb"
+
+# Default sans serif (Streamlit serves Source Sans Pro). Crisp, readable.
+font = "sans serif"

@@ -1,0 +1,1005 @@
+[
+  {
+    "id": "rl_001",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Multi-armed Bandits",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "In the k-armed bandit setting, what does an action-value estimate represent?",
+    "ground_truth": "An action-value estimate represents the learner's current estimate of the expected reward obtained by selecting a particular action.",
+    "expected_source_hint": "Chapter 2, Action-value Methods"
+  },
+  {
+    "id": "rl_002",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Nonstationary Bandits",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Why are constant step-size action-value updates better suited than sample averages for nonstationary bandit problems?",
+    "ground_truth": "Sample averages weight all past rewards equally, so they adapt slowly when reward distributions change. Constant step-size updates give more weight to recent rewards, allowing estimates to track nonstationary values.",
+    "expected_source_hint": "Chapter 2, Tracking a Nonstationary Problem"
+  },
+  {
+    "id": "rl_003",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Exploration",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "How can optimistic initial values encourage exploration in action-value methods?",
+    "ground_truth": "Optimistic initial values make unexplored actions appear better than they really are, so greedy selection tries them. As actual rewards are observed, the estimates become more realistic.",
+    "expected_source_hint": "Chapter 2, Optimistic Initial Values"
+  },
+  {
+    "id": "rl_004",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Exploration",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare epsilon-greedy action selection with upper-confidence-bound action selection.",
+    "ground_truth": "Epsilon-greedy explores randomly with fixed probability, regardless of uncertainty. UCB selects actions using both estimated value and uncertainty, so actions that are promising or insufficiently tried receive priority.",
+    "expected_source_hint": "Chapter 2, Upper-Confidence-Bound Action Selection"
+  },
+  {
+    "id": "rl_005",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Gradient Bandits",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why do gradient bandit algorithms use preferences instead of direct action-value estimates?",
+    "ground_truth": "Gradient bandit methods learn numerical preferences that determine action probabilities through a softmax distribution. This lets the algorithm directly adjust the policy toward actions that produce above-baseline rewards.",
+    "expected_source_hint": "Chapter 2, Gradient Bandit Algorithms"
+  },
+  {
+    "id": "rl_006",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Contextual Bandits",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What makes an associative search problem different from a standard k-armed bandit problem?",
+    "ground_truth": "Associative search includes state or context information, so the best action may depend on the current situation. A standard bandit problem has no state-dependent action choice.",
+    "expected_source_hint": "Chapter 2, Associative Search"
+  },
+  {
+    "id": "rl_007",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "MDPs",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why is the reward signal not the same thing as a value function in reinforcement learning?",
+    "ground_truth": "The reward signal gives immediate feedback from the environment, while a value function estimates long-term expected return. Rewards define the goal, but values help the agent choose actions to achieve it.",
+    "expected_source_hint": "Chapter 3, Goals and Rewards; Policies and Value Functions"
+  },
+  {
+    "id": "rl_008",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Returns",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "How do episodic and continuing tasks differ in how returns are defined?",
+    "ground_truth": "Episodic tasks end in terminal states, so return is accumulated over an episode. Continuing tasks do not naturally terminate, so discounted or average reward formulations are used to keep returns well-defined.",
+    "expected_source_hint": "Chapter 3, Returns and Episodes"
+  },
+  {
+    "id": "rl_009",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Bellman Equations",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What relationship does the Bellman equation express for a value function?",
+    "ground_truth": "It expresses a value as the expected immediate reward plus the discounted value of successor states under a policy or optimal choice rule.",
+    "expected_source_hint": "Chapter 3, Policies and Value Functions"
+  },
+  {
+    "id": "rl_010",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Dynamic Programming",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does policy improvement produce a policy that is at least as good as the original policy?",
+    "ground_truth": "Policy improvement chooses actions greedily with respect to the current policy's value function. If an action has equal or greater expected return than the old policy's action, switching to it cannot make the policy worse.",
+    "expected_source_hint": "Chapter 4, Policy Improvement"
+  },
+  {
+    "id": "rl_011",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Dynamic Programming",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare policy iteration and value iteration.",
+    "ground_truth": "Policy iteration alternates between policy evaluation and policy improvement. Value iteration combines evaluation and improvement into repeated Bellman optimality backups, often avoiding full policy evaluation before improving.",
+    "expected_source_hint": "Chapter 4, Policy Iteration and Value Iteration"
+  },
+  {
+    "id": "rl_012",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Dynamic Programming",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why can in-place dynamic programming updates converge faster than two-array updates?",
+    "ground_truth": "In-place updates immediately use newly computed values during the same sweep, so information can propagate faster through the state space than when all updates use only values from the previous sweep.",
+    "expected_source_hint": "Chapter 4, Policy Evaluation"
+  },
+  {
+    "id": "rl_013",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Monte Carlo and TD",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare Monte Carlo prediction and temporal-difference prediction.",
+    "ground_truth": "Monte Carlo prediction waits until returns are observed at the end of episodes and does not bootstrap. TD prediction updates from partial experience by bootstrapping from current value estimates, so it can learn before an episode ends.",
+    "expected_source_hint": "Chapters 5 and 6"
+  },
+  {
+    "id": "rl_014",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Monte Carlo Control",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why are exploring starts useful in Monte Carlo control?",
+    "ground_truth": "Exploring starts ensure that all state-action pairs can be sampled, which helps Monte Carlo control estimate action values broadly enough to improve the policy.",
+    "expected_source_hint": "Chapter 5, Monte Carlo Control"
+  },
+  {
+    "id": "rl_015",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Off-policy Learning",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "What is the difference between ordinary and weighted importance sampling in off-policy Monte Carlo prediction?",
+    "ground_truth": "Ordinary importance sampling averages returns weighted by likelihood ratios and can have high variance. Weighted importance sampling normalizes by the total weight, usually reducing variance but introducing some bias in finite samples.",
+    "expected_source_hint": "Chapter 5, Off-policy Prediction via Importance Sampling"
+  },
+  {
+    "id": "rl_016",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "TD Control",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "How does Sarsa differ from Q-learning in the target it uses for TD control?",
+    "ground_truth": "Sarsa uses the action actually selected by the behavior policy in the next state, making it on-policy. Q-learning uses the maximum estimated next action value, making it off-policy with respect to the greedy target policy.",
+    "expected_source_hint": "Chapter 6, Sarsa and Q-learning"
+  },
+  {
+    "id": "rl_017",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Expected Sarsa",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why can Expected Sarsa reduce variance compared with ordinary Sarsa?",
+    "ground_truth": "Expected Sarsa uses the expected value over the next action distribution instead of sampling one next action. This removes randomness from the next-action sample in the target.",
+    "expected_source_hint": "Chapter 6, Expected Sarsa"
+  },
+  {
+    "id": "rl_018",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Double Learning",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "How does Double Q-learning address maximization bias?",
+    "ground_truth": "Double Q-learning separates action selection and action evaluation across two value estimates. This reduces the tendency of a max operation over noisy estimates to overestimate action values.",
+    "expected_source_hint": "Chapter 6, Maximization Bias and Double Learning"
+  },
+  {
+    "id": "rl_019",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "n-step Bootstrapping",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "How do n-step methods form a bridge between one-step TD methods and Monte Carlo methods?",
+    "ground_truth": "n-step methods update from returns that include several real rewards before bootstrapping. With small n they resemble TD, while with n extending to the episode end they approach Monte Carlo returns.",
+    "expected_source_hint": "Chapter 7, n-step TD Prediction"
+  },
+  {
+    "id": "rl_020",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Off-policy n-step Learning",
+    "difficulty": "hard",
+    "question_type": "comparison",
+    "question": "Why is the Tree Backup algorithm useful for off-policy n-step learning without importance sampling?",
+    "ground_truth": "Tree Backup uses expected backups over the target policy's action probabilities instead of correcting sampled actions with importance-sampling ratios. This avoids some high-variance corrections in off-policy learning.",
+    "expected_source_hint": "Chapter 7, Tree Backup Algorithm"
+  },
+  {
+    "id": "rl_021",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Planning",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "In model-based reinforcement learning, what is a model used for?",
+    "ground_truth": "A model is used to predict environment dynamics, such as next states and rewards, so the agent can plan or simulate experience without directly interacting with the real environment.",
+    "expected_source_hint": "Chapter 8, Models and Planning"
+  },
+  {
+    "id": "rl_022",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Dyna",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What is the key idea behind the Dyna architecture?",
+    "ground_truth": "Dyna integrates direct learning from real experience with planning updates from simulated experience produced by a learned model.",
+    "expected_source_hint": "Chapter 8, Dyna"
+  },
+  {
+    "id": "rl_023",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Exploration and Planning",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "How does Dyna-Q+ modify Dyna-Q to encourage exploration when the model may be outdated?",
+    "ground_truth": "Dyna-Q+ adds an exploration bonus for actions that have not been tried recently, encouraging the agent to revisit possibilities when the environment may have changed.",
+    "expected_source_hint": "Chapter 8, When the Model Is Wrong"
+  },
+  {
+    "id": "rl_024",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Prioritized Sweeping",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does prioritized sweeping focus planning updates on certain state-action pairs?",
+    "ground_truth": "Prioritized sweeping focuses updates where large value changes are expected to matter most, especially predecessors of states whose values changed significantly.",
+    "expected_source_hint": "Chapter 8, Prioritized Sweeping"
+  },
+  {
+    "id": "rl_025",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Planning Updates",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare expected updates and sample updates in planning.",
+    "ground_truth": "Expected updates average over all possible next outcomes according to the model, which can be accurate but expensive. Sample updates use sampled transitions, which are cheaper and can scale better when many outcomes are possible.",
+    "expected_source_hint": "Chapter 8, Expected vs. Sample Updates"
+  },
+  {
+    "id": "rl_026",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Function Approximation",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why is tile coding useful as a feature representation for value-function approximation?",
+    "ground_truth": "Tile coding creates sparse, overlapping binary features that allow nearby states to share generalization while still preserving some local distinction.",
+    "expected_source_hint": "Chapter 9, Feature Construction"
+  },
+  {
+    "id": "rl_027",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Semi-gradient Methods",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What makes a value-function update a semi-gradient update?",
+    "ground_truth": "It treats the TD target as fixed and takes a gradient only with respect to the current estimate, ignoring the target's dependence on the same parameters.",
+    "expected_source_hint": "Chapter 9, Stochastic-gradient and Semi-gradient Methods"
+  },
+  {
+    "id": "rl_028",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Policy Gradient",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What is the main advantage of policy-gradient methods over only learning action values?",
+    "ground_truth": "Policy-gradient methods directly parameterize and optimize the policy, which is useful for stochastic policies, continuous actions, and cases where value-based greedy action selection is difficult.",
+    "expected_source_hint": "Chapter 13, Policy Gradient Methods"
+  },
+  {
+    "id": "rl_029",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Actor-Critic",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare the roles of the actor and critic in actor-critic methods.",
+    "ground_truth": "The actor selects actions using a parameterized policy. The critic evaluates behavior, usually by estimating a value function or TD error that guides the actor's policy update.",
+    "expected_source_hint": "Chapter 13, Actor-Critic Methods"
+  },
+  {
+    "id": "rl_030",
+    "document": "Reinforcement Learning: An Introduction",
+    "topic": "Eligibility Traces",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "How do eligibility traces combine ideas from TD learning and Monte Carlo learning?",
+    "ground_truth": "Eligibility traces assign temporary credit to recently visited states or actions, allowing updates to affect multiple prior steps. The trace-decay parameter controls the mix between short TD-style backups and longer Monte Carlo-style credit assignment.",
+    "expected_source_hint": "Chapter 12, Eligibility Traces"
+  },
+
+  {
+    "id": "os_001",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "OS Overview",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What are the three major themes used to organize Operating Systems: Three Easy Pieces?",
+    "ground_truth": "The book is organized around virtualization, concurrency, and persistence.",
+    "expected_source_hint": "Preface"
+  },
+  {
+    "id": "os_002",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Processes",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why is the process abstraction important in an operating system?",
+    "ground_truth": "The process abstraction gives each running program the illusion that it has its own CPU and execution context, allowing the OS to manage and isolate multiple programs.",
+    "expected_source_hint": "Virtualization, Process Abstraction"
+  },
+  {
+    "id": "os_003",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "CPU Virtualization",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What problem does limited direct execution solve?",
+    "ground_truth": "Limited direct execution lets programs run directly on the CPU for speed while using hardware and OS control mechanisms to retain protection and regain control when needed.",
+    "expected_source_hint": "Limited Direct Execution"
+  },
+  {
+    "id": "os_004",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Scheduling",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare turnaround time and response time as scheduling metrics.",
+    "ground_truth": "Turnaround time measures how long a job takes from arrival to completion. Response time measures how long it takes before the job first begins responding or running.",
+    "expected_source_hint": "Scheduling Introduction"
+  },
+  {
+    "id": "os_005",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Scheduling",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Why can shortest-job-first outperform FIFO for average turnaround time?",
+    "ground_truth": "SJF runs shorter jobs before longer ones, reducing the time many jobs wait behind a long job. FIFO can suffer from convoy effects when short jobs wait behind long jobs.",
+    "expected_source_hint": "Scheduling Policies"
+  },
+  {
+    "id": "os_006",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "MLFQ",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What is the main goal of a multi-level feedback queue scheduler?",
+    "ground_truth": "MLFQ tries to achieve good response time for interactive jobs while still making progress on CPU-bound jobs by adjusting priorities based on observed behavior.",
+    "expected_source_hint": "Multi-level Feedback Queue"
+  },
+  {
+    "id": "os_007",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Proportional Share Scheduling",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare lottery scheduling and stride scheduling.",
+    "ground_truth": "Lottery scheduling uses randomness and tickets to approximate proportional share over time. Stride scheduling is deterministic and tracks pass values so CPU shares follow ticket proportions more predictably.",
+    "expected_source_hint": "Lottery Scheduling and Stride Scheduling"
+  },
+  {
+    "id": "os_008",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Address Spaces",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What is an address space?",
+    "ground_truth": "An address space is the abstraction of a process's memory, typically including code, heap, and stack regions as seen by the program.",
+    "expected_source_hint": "Address Spaces"
+  },
+  {
+    "id": "os_009",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Memory Virtualization",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "How do base and bounds registers support memory virtualization and protection?",
+    "ground_truth": "The base register relocates virtual addresses to physical memory, and the bounds register checks that accesses stay within the process's allowed region.",
+    "expected_source_hint": "Address Translation"
+  },
+  {
+    "id": "os_010",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Segmentation and Paging",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare segmentation and paging as approaches to memory virtualization.",
+    "ground_truth": "Segmentation divides memory into variable-sized logical regions such as code, heap, and stack. Paging divides memory into fixed-size pages and frames, simplifying allocation but requiring page tables.",
+    "expected_source_hint": "Segmentation and Paging"
+  },
+  {
+    "id": "os_011",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "TLBs",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does a translation lookaside buffer improve virtual memory performance?",
+    "ground_truth": "A TLB caches recent virtual-to-physical address translations, avoiding expensive page table lookups for common memory accesses.",
+    "expected_source_hint": "Translation Lookaside Buffers"
+  },
+  {
+    "id": "os_012",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Page Tables",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why are multi-level page tables useful?",
+    "ground_truth": "Multi-level page tables reduce memory overhead by allocating page-table pieces only for used regions of the virtual address space.",
+    "expected_source_hint": "Smaller Page Tables"
+  },
+  {
+    "id": "os_013",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Demand Paging",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What is demand paging and why is it useful?",
+    "ground_truth": "Demand paging loads pages into memory only when they are accessed. This allows programs to start without loading their entire address space and can reduce memory usage.",
+    "expected_source_hint": "Beyond Physical Memory"
+  },
+  {
+    "id": "os_014",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Page Replacement",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare FIFO and LRU page replacement.",
+    "ground_truth": "FIFO evicts the oldest loaded page, regardless of recent use. LRU tries to evict the page that has not been used for the longest time, better matching locality but requiring more tracking.",
+    "expected_source_hint": "Page Replacement Policies"
+  },
+  {
+    "id": "os_015",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Thrashing",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does thrashing occur in virtual memory systems?",
+    "ground_truth": "Thrashing occurs when the working sets of running processes exceed available physical memory, causing the system to spend too much time paging instead of doing useful work.",
+    "expected_source_hint": "Complete Virtual Memory Systems"
+  },
+  {
+    "id": "os_016",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Concurrency",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare a process and a thread.",
+    "ground_truth": "Processes have separate address spaces and resources. Threads within a process share the same address space but have their own execution state such as registers and stack.",
+    "expected_source_hint": "Concurrency, Threads"
+  },
+  {
+    "id": "os_017",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Concurrency Bugs",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What is a data race?",
+    "ground_truth": "A data race occurs when multiple threads access shared data concurrently, at least one access writes, and the accesses are not properly synchronized.",
+    "expected_source_hint": "Thread API and Locks"
+  },
+  {
+    "id": "os_018",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Locks",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What property does a lock provide for a critical section?",
+    "ground_truth": "A lock provides mutual exclusion, ensuring that only one thread at a time executes the protected critical section.",
+    "expected_source_hint": "Locks"
+  },
+  {
+    "id": "os_019",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Locks",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare spin locks and blocking locks.",
+    "ground_truth": "Spin locks repeatedly check until the lock becomes available, which can waste CPU but may be efficient for short waits. Blocking locks put the thread to sleep, avoiding CPU waste but adding context-switch overhead.",
+    "expected_source_hint": "Locks"
+  },
+  {
+    "id": "os_020",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Condition Variables",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why are condition variables used with locks?",
+    "ground_truth": "Condition variables let threads sleep until a condition becomes true, while locks protect the shared state used to check and update that condition.",
+    "expected_source_hint": "Condition Variables"
+  },
+  {
+    "id": "os_021",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Semaphores",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "How can semaphores act like both locks and condition synchronization tools?",
+    "ground_truth": "A binary semaphore can enforce mutual exclusion like a lock. Counting semaphores can also represent available resources or signal between threads, supporting synchronization beyond simple locking.",
+    "expected_source_hint": "Semaphores"
+  },
+  {
+    "id": "os_022",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Deadlock",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What are the four classic conditions required for deadlock?",
+    "ground_truth": "The four conditions are mutual exclusion, hold-and-wait, no preemption, and circular wait.",
+    "expected_source_hint": "Deadlock"
+  },
+  {
+    "id": "os_023",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Persistence",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does the file abstraction matter for persistence?",
+    "ground_truth": "The file abstraction gives programs a stable named container for bytes, hiding device details and allowing data to persist beyond process execution.",
+    "expected_source_hint": "Persistence, File Systems"
+  },
+  {
+    "id": "os_024",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "File Descriptors",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What is a file descriptor used for?",
+    "ground_truth": "A file descriptor is a small integer handle that a process uses to refer to an open file or I/O object in system calls.",
+    "expected_source_hint": "File System Interface"
+  },
+  {
+    "id": "os_025",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Crash Consistency",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "How does journaling help file systems recover from crashes?",
+    "ground_truth": "Journaling records intended metadata or data updates before applying them, allowing the file system to replay or roll back operations after a crash to restore consistency.",
+    "expected_source_hint": "Journaling"
+  },
+  {
+    "id": "os_026",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "RAID",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare mirroring and parity-based RAID at a high level.",
+    "ground_truth": "Mirroring stores duplicate copies of data for simple recovery but uses more storage. Parity-based RAID stores redundancy more space-efficiently but has more complex write and recovery behavior.",
+    "expected_source_hint": "RAID"
+  },
+  {
+    "id": "os_027",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "File System Layout",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why do file systems try to place related data and metadata near each other on disk?",
+    "ground_truth": "Keeping related blocks close improves locality and reduces seek or access overhead, which can significantly improve file-system performance.",
+    "expected_source_hint": "Fast File System"
+  },
+  {
+    "id": "os_028",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Crash Consistency",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "Why is crash consistency difficult when a file-system operation updates multiple blocks?",
+    "ground_truth": "A crash can occur after only some related blocks are written, leaving metadata and data inconsistent. The file system needs mechanisms such as careful ordering, journaling, or copy-on-write to recover safely.",
+    "expected_source_hint": "Crash Consistency and Journaling"
+  },
+  {
+    "id": "os_029",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Virtual Memory",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "How do page tables, TLBs, and page replacement work together in a virtual memory system?",
+    "ground_truth": "Page tables define virtual-to-physical mappings, TLBs cache recent translations for speed, and page replacement decides which memory-resident page to evict when physical memory is full.",
+    "expected_source_hint": "Paging, TLBs, Beyond Physical Memory"
+  },
+  {
+    "id": "os_030",
+    "document": "Operating Systems: Three Easy Pieces",
+    "topic": "Scheduling",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "Why is scheduling a tradeoff between fairness, turnaround time, and responsiveness?",
+    "ground_truth": "Policies that optimize one metric can hurt another: favoring short or interactive jobs improves response or turnaround for some jobs, while strict fairness may delay urgent interactive work or short jobs.",
+    "expected_source_hint": "Scheduling Introduction, MLFQ, Proportional Share"
+  },
+
+  {
+    "id": "csc263_001",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Running Time",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What does asymptotic analysis focus on when measuring running time?",
+    "ground_truth": "It focuses on how the number of basic operations grows as a function of input size, abstracting away machine-specific timing details.",
+    "expected_source_hint": "Chapter 1, How do we measure running time?"
+  },
+  {
+    "id": "csc263_002",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Algorithm Analysis",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare worst-case analysis and average-case analysis.",
+    "ground_truth": "Worst-case analysis bounds performance on the most costly input of a given size. Average-case analysis considers expected performance over a distribution of inputs.",
+    "expected_source_hint": "Chapter 1, Worst-case and Average-case Analysis"
+  },
+  {
+    "id": "csc263_003",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "ADTs",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "What is the difference between an abstract data type and a data structure?",
+    "ground_truth": "An abstract data type specifies operations and behavior. A data structure is a concrete representation and implementation of those operations.",
+    "expected_source_hint": "Chapter 2, Abstract data type vs. data structure"
+  },
+  {
+    "id": "csc263_004",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Heaps",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What invariant does a binary heap maintain?",
+    "ground_truth": "A binary heap maintains a complete binary tree shape and a heap-order property, such as every parent having priority at least as high as its children in a max-heap.",
+    "expected_source_hint": "Chapter 2, Heaps"
+  },
+  {
+    "id": "csc263_005",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Heaps",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why can building a heap from an array be faster than inserting each element one at a time?",
+    "ground_truth": "Bottom-up heap construction performs most work near the top but many nodes are near the bottom and require little sinking, giving linear total time rather than repeated logarithmic inserts.",
+    "expected_source_hint": "Chapter 2, Building Heaps"
+  },
+  {
+    "id": "csc263_006",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "AVL Trees",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does the AVL height-balance property help guarantee logarithmic search time?",
+    "ground_truth": "The balance condition prevents the tree from becoming too skewed, so the height grows logarithmically with the number of nodes and search follows a logarithmic-length path.",
+    "expected_source_hint": "Chapter 3, AVL Trees"
+  },
+  {
+    "id": "csc263_007",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "AVL Rotations",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What is the purpose of rotations in AVL trees?",
+    "ground_truth": "Rotations restore height balance after updates while preserving the binary search tree ordering of keys.",
+    "expected_source_hint": "Chapter 3, Rotations"
+  },
+  {
+    "id": "csc263_008",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Search Trees",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare a naive binary search tree and an AVL tree.",
+    "ground_truth": "A naive BST can become highly unbalanced and have linear-height operations. An AVL tree maintains balance through rotations, keeping operations logarithmic.",
+    "expected_source_hint": "Chapter 3, Naive BSTs and AVL Trees"
+  },
+  {
+    "id": "csc263_009",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Hash Tables",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "How does closed addressing handle collisions in a hash table?",
+    "ground_truth": "Closed addressing stores colliding keys in a secondary structure, commonly a linked list or bucket, at the same table index.",
+    "expected_source_hint": "Chapter 4, Closed Addressing"
+  },
+  {
+    "id": "csc263_010",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Hash Tables",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare closed addressing and open addressing for collision resolution.",
+    "ground_truth": "Closed addressing stores multiple items per table position using buckets or chains. Open addressing stores all items directly in the table and probes for another slot when collisions occur.",
+    "expected_source_hint": "Chapter 4, Closed and Open Addressing"
+  },
+  {
+    "id": "csc263_011",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Hash Tables",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does load factor matter in hash table performance?",
+    "ground_truth": "The load factor measures how full the table is. Higher load factors generally increase collisions or probe lengths, hurting expected operation time.",
+    "expected_source_hint": "Chapter 4, Hash Tables"
+  },
+  {
+    "id": "csc263_012",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Randomized Algorithms",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does randomized quicksort avoid consistently bad pivot choices on fixed adversarial inputs?",
+    "ground_truth": "Randomizing the pivot makes the pivot choice independent of the input order, so no fixed input arrangement reliably causes the worst-case split pattern.",
+    "expected_source_hint": "Chapter 5, Randomized Quicksort"
+  },
+  {
+    "id": "csc263_013",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Universal Hashing",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What problem is universal hashing designed to reduce?",
+    "ground_truth": "Universal hashing reduces the chance that a fixed set of keys causes many collisions by randomly choosing a hash function from a family with good collision guarantees.",
+    "expected_source_hint": "Chapter 5, Universal Hashing"
+  },
+  {
+    "id": "csc263_014",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Graph Traversals",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare breadth-first search and depth-first search.",
+    "ground_truth": "BFS explores vertices by increasing distance from the start and is useful for shortest paths in unweighted graphs. DFS explores deeply before backtracking and is useful for structure discovery such as components or ordering.",
+    "expected_source_hint": "Chapter 6, BFS and DFS"
+  },
+  {
+    "id": "csc263_015",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Graph Representations",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare adjacency lists and adjacency matrices.",
+    "ground_truth": "Adjacency lists are space-efficient for sparse graphs and efficient for iterating neighbors. Adjacency matrices use more space but allow constant-time edge existence checks.",
+    "expected_source_hint": "Chapter 6, Implementing Graphs"
+  },
+  {
+    "id": "csc263_016",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "DFS Applications",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why is DFS useful for identifying graph structure?",
+    "ground_truth": "DFS records discovery and finish behavior that reveals reachability, connected components, cycles, and ordering relationships in directed or undirected graphs.",
+    "expected_source_hint": "Chapter 6, Applications of Graph Traversals"
+  },
+  {
+    "id": "csc263_017",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Minimum Spanning Trees",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What is a minimum spanning tree?",
+    "ground_truth": "A minimum spanning tree is a set of edges connecting all vertices of a connected weighted graph with no cycles and minimum total edge weight.",
+    "expected_source_hint": "Chapter 6, Minimum Spanning Trees"
+  },
+  {
+    "id": "csc263_018",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Minimum Spanning Trees",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare Prim's algorithm and Kruskal's algorithm for finding minimum spanning trees.",
+    "ground_truth": "Prim's algorithm grows one tree by repeatedly adding a cheapest edge from the tree to a new vertex. Kruskal's algorithm sorts edges and adds safe edges that connect different components.",
+    "expected_source_hint": "Chapter 6, Minimum Spanning Trees"
+  },
+  {
+    "id": "csc263_019",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Amortized Analysis",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does appending to a dynamic array have constant amortized time even though resizing is expensive?",
+    "ground_truth": "Resizing happens only occasionally. The high cost of copying during a resize is spread over many cheap append operations, yielding constant average cost per append over a sequence.",
+    "expected_source_hint": "Chapter 7, Dynamic Arrays"
+  },
+  {
+    "id": "csc263_020",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Amortized Analysis",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare aggregate, accounting, and potential methods in amortized analysis.",
+    "ground_truth": "The aggregate method bounds the total cost of a sequence directly. The accounting method assigns artificial charges to operations. The potential method uses a stored potential function to represent prepaid work.",
+    "expected_source_hint": "Chapter 7, Amortized Analysis"
+  },
+  {
+    "id": "csc263_021",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Disjoint Sets",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does union by rank help tree-based disjoint sets?",
+    "ground_truth": "Union by rank attaches the shallower or lower-rank tree under the higher-rank tree, limiting height growth and making future finds faster.",
+    "expected_source_hint": "Chapter 8, Disjoint Sets"
+  },
+  {
+    "id": "csc263_022",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Disjoint Sets",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What does path compression do during a find operation?",
+    "ground_truth": "Path compression makes nodes on the search path point closer to the root, often directly to the root, reducing the cost of future find operations.",
+    "expected_source_hint": "Chapter 8, Path Compression"
+  },
+  {
+    "id": "csc263_023",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Disjoint Sets",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "Why are union by rank and path compression especially powerful when combined?",
+    "ground_truth": "Union by rank prevents trees from growing tall, while path compression flattens trees during finds. Together they make disjoint-set operations extremely close to constant amortized time.",
+    "expected_source_hint": "Chapter 8, Combining the Heuristics"
+  },
+  {
+    "id": "csc263_024",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Dictionaries",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "When would a hash table be preferable to an AVL tree, and when would an AVL tree be preferable?",
+    "ground_truth": "A hash table is preferable for expected fast dictionary operations when ordering is unnecessary. An AVL tree is preferable when worst-case logarithmic guarantees or ordered operations are needed.",
+    "expected_source_hint": "Chapters 3 and 4"
+  },
+  {
+    "id": "csc263_025",
+    "document": "CSC263 Data Structures and Analysis Notes",
+    "topic": "Sorting and Priority Queues",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare heapsort and randomized quicksort at a high level.",
+    "ground_truth": "Heapsort uses a heap and guarantees O(n log n) worst-case time. Randomized quicksort has expected O(n log n) time and is often fast in practice, but its worst case is still quadratic.",
+    "expected_source_hint": "Chapters 2 and 5"
+  },
+
+  {
+    "id": "mat102_001",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Logic",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What is a mathematical statement?",
+    "ground_truth": "A mathematical statement is a sentence with a definite truth value: it is either true or false.",
+    "expected_source_hint": "Chapter 3, Mathematical Statements"
+  },
+  {
+    "id": "mat102_002",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Implication",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare an implication with its converse.",
+    "ground_truth": "An implication has the form if P then Q. Its converse is if Q then P, which is a different statement and does not automatically have the same truth value.",
+    "expected_source_hint": "Chapter 3, Logic Symbols"
+  },
+  {
+    "id": "mat102_003",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Quantifiers",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "How do you negate a universal statement of the form 'for all x, P(x)'?",
+    "ground_truth": "Its negation is 'there exists an x such that not P(x)'.",
+    "expected_source_hint": "Chapter 3, Negation"
+  },
+  {
+    "id": "mat102_004",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Proof Strategies",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "What is the basic structure of a direct proof of an implication?",
+    "ground_truth": "Assume the hypothesis is true, then use definitions, known results, and logical steps to prove the conclusion.",
+    "expected_source_hint": "Chapter 3, Proof Strategies"
+  },
+  {
+    "id": "mat102_005",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Proof Strategies",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare proof by contrapositive and proof by contradiction.",
+    "ground_truth": "A contrapositive proof proves if not Q then not P instead of if P then Q. A contradiction proof assumes the statement is false and derives an impossibility.",
+    "expected_source_hint": "Chapter 3, Proof Strategies"
+  },
+  {
+    "id": "mat102_006",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Induction",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What are the two main parts of a standard induction proof?",
+    "ground_truth": "A standard induction proof has a base case and an induction step, where the induction hypothesis is used to prove the next case.",
+    "expected_source_hint": "Chapter 4, Principle of Mathematical Induction"
+  },
+  {
+    "id": "mat102_007",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Induction",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare ordinary induction and strong induction.",
+    "ground_truth": "Ordinary induction assumes the statement for one previous value to prove the next. Strong induction assumes the statement for all previous relevant values to prove the next.",
+    "expected_source_hint": "Chapter 4, Strong Induction"
+  },
+  {
+    "id": "mat102_008",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Summations",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why is summation notation useful in proofs?",
+    "ground_truth": "Summation notation compactly represents repeated addition and makes it easier to state, manipulate, and prove formulas involving indexed sums.",
+    "expected_source_hint": "Chapter 4, Summation Notation"
+  },
+  {
+    "id": "mat102_009",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Functions",
+    "difficulty": "easy",
+    "question_type": "factual",
+    "question": "What is a bijection?",
+    "ground_truth": "A bijection is a function that is both injective and surjective, so every element of the codomain is matched with exactly one element of the domain.",
+    "expected_source_hint": "Chapter 5, Injections, Surjections and Bijections"
+  },
+  {
+    "id": "mat102_010",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Functions",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why does a bijective function have an inverse function?",
+    "ground_truth": "Injectivity ensures each output comes from at most one input, and surjectivity ensures each codomain element is hit. Together, each output corresponds to exactly one input, so an inverse is well-defined.",
+    "expected_source_hint": "Chapter 5, Bijections"
+  },
+  {
+    "id": "mat102_011",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Cardinality",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "How do bijections help compare the sizes of sets?",
+    "ground_truth": "If there is a bijection between two sets, their elements can be paired one-to-one with none left over, so the sets have the same cardinality.",
+    "expected_source_hint": "Chapter 5, Cardinality"
+  },
+  {
+    "id": "mat102_012",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Cardinality",
+    "difficulty": "medium",
+    "question_type": "comparison",
+    "question": "Compare finite cardinality with countable infinite cardinality.",
+    "ground_truth": "A finite set has a natural-number size. A countably infinite set can be put in bijection with the natural numbers, so it is infinite but listable in sequence.",
+    "expected_source_hint": "Chapter 5, Cardinality"
+  },
+  {
+    "id": "mat102_013",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Proof Strategy",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "How should the quantifiers in a statement guide the structure of a proof?",
+    "ground_truth": "Universal statements usually require proving the claim for an arbitrary element. Existential statements require constructing or identifying a witness. Nested quantifiers determine the order in which arbitrary choices and witnesses must be handled.",
+    "expected_source_hint": "Chapters 2 and 3, Sets, Functions, Logic"
+  },
+  {
+    "id": "mat102_014",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Sets",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "question": "Why is it useful to express set relationships using element-wise logic?",
+    "ground_truth": "Element-wise logic turns set claims into statements about arbitrary elements, making inclusions, equality, unions, intersections, and complements easier to prove rigorously.",
+    "expected_source_hint": "Chapter 2, Sets"
+  },
+  {
+    "id": "mat102_015",
+    "document": "MAT102 Introduction to Mathematical Proofs Notes",
+    "topic": "Well-defined Functions",
+    "difficulty": "hard",
+    "question_type": "synthesis",
+    "question": "Why must a function be well-defined before proving properties like injectivity or surjectivity?",
+    "ground_truth": "A function must assign each valid input exactly one valid output before other properties can be meaningful. Without well-definedness, claims about one-to-one or onto behavior may not refer to a legitimate function.",
+    "expected_source_hint": "Chapter 2 Appendix, Well-defined Functions"
+  }
+]

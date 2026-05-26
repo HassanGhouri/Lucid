@@ -1,0 +1,3 @@
+mode,mode_label,num_examples,faithfulness,answer_relevancy,context_precision,context_recall,judge_grounding_score,judge_correctness_score,judge_usefulness_score
+hybrid_plus_rerank,Hybrid + Rerank,100,,,,,0.992,1.0,0.993
+hybrid_plus_rerank_plus_rewrite,Hybrid + Rerank + Rewrite,100,,,,,0.9949494949494949,0.9994949494949495,0.9949494949494949

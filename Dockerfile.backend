@@ -1,0 +1,40 @@
+FROM python:3.11-slim AS builder
+
+ENV PIP_NO_CACHE_DIR=1
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --user -r requirements.txt
+
+
+FROM python:3.11-slim AS runtime
+
+ENV HF_HOME=/app/models \
+    PATH=/home/app/.local/bin:$PATH \
+    PYTHONPATH=/home/app/.local/lib/python3.11/site-packages \
+    PYTHONUNBUFFERED=1
+
+RUN useradd --create-home --shell /usr/sbin/nologin app \
+    && mkdir -p /app/models \
+    && chown -R app:app /app
+
+WORKDIR /app
+COPY --from=builder /root/.local /home/app/.local
+COPY requirements.txt .
+
+RUN python -c "from sentence_transformers import SentenceTransformer, CrossEncoder; SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2'); CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')"
+RUN python -c "from fastembed import SparseTextEmbedding; SparseTextEmbedding(model_name='Qdrant/bm25')"
+
+COPY backend ./backend
+COPY scripts ./scripts
+
+RUN chown -R app:app /app /home/app/.local
+
+USER app
+EXPOSE 8000
+
+CMD ["python", "-m", "scripts.run_server"]

@@ -1,0 +1,10 @@
+.venv
+__pycache__
+.git
+data/uploads
+backend/app/eval/results*
+*.pyc
+.env
+.DS_Store
+.idea
+.streamlit
