@@ -42,7 +42,7 @@ Lucid is evaluated on a hand-curated 100-question benchmark across four real aca
 
 - **Difficulty distribution:** 72 medium, 18 easy, 10 hard.
 - **Question type distribution:** 40 conceptual, 33 comparison, 18 factual, 9 synthesis.
-- Every example includes a hand-authored ground-truth answer plus an expected source hint.
+- Every example includes a human authored ground-truth answer plus an expected source hint.
 
 ### Methodology
 
