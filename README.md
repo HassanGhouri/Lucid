@@ -220,7 +220,7 @@ To add: place image at docs/screenshots/langsmith-trace.png and replace this com
 
 ## Privacy & Multi-Tenancy
 
-The public demo serves four shared technical documents (Reinforcement Learning, Operating Systems, CSC263, MAT102). Users can also upload their own PDFs, which are private to the uploader's anonymous browser session:
+The public demo serves four shared technical documents (Reinforcement Learning, Operating Systems, Data structures & analysis, Foundations of mathematics). Users can also upload their own PDFs, which are private to the uploader's anonymous browser session:
 
 - Each Streamlit session generates a unique `session_id` client-side. No login, no account, no PII.
 - Private chunks are tagged with `visibility="private"` and `owner_id=<session_id>` in Qdrant.
