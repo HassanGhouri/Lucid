@@ -48,8 +48,8 @@ Lucid is evaluated on a hand-curated 100-question benchmark across four real aca
 
 Two complementary scoring stacks per example:
 
-- **RAGAS metrics** — Faithfulness, Answer Relevancy, Context Precision, Context Recall.
-- **Custom OpenAI LLM-as-judge** (`gpt-4.1-mini`) — Grounding, Correctness, Usefulness, each scored 0–1 with a brief written explanation.
+- **RAGAS metrics**: Faithfulness, Answer Relevancy, Context Precision, Context Recall.
+- **Custom OpenAI LLM-as-judge** (`gpt-4.1-mini`): Grounding, Correctness, Usefulness, each scored 0–1 with a brief written explanation.
 
 Four retrieval/generation modes compared head-to-head on the same 100 examples:
 
