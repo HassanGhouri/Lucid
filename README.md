@@ -224,7 +224,7 @@ The public demo serves four shared technical documents (Reinforcement Learning, 
 
 - Each Streamlit session generates a unique `session_id` client-side. No login, no account, no PII.
 - Private chunks are tagged with `visibility="private"` and `owner_id=<session_id>` in Qdrant.
-- Retrieval queries filter on `visibility="public" OR owner_id=<current session_id>`, so users see public demo docs plus their own uploads — never anyone else's.
+- Retrieval queries filter on `visibility="public" OR owner_id=<current session_id>`, so users see public demo docs plus their own uploads. Never anyone else's.
 - Users can clear their own private uploads on demand; abandoned private uploads are cleaned up automatically after a 24-hour TTL.
 - Public demo documents are never touched by per-session clears or TTL cleanup.
 
