@@ -144,12 +144,12 @@ ASCII fallback (in case Mermaid doesn't render in some viewers):
 
 ## Design Choices
 
-- **Docling for ingestion.** Handles complex PDF layouts and preserves page metadata needed for citations — more robust than plain text extraction or naive PyPDF.
+- **Docling for ingestion.** Handles complex PDF layouts and preserves page metadata needed for citations. More robust than plain text extraction or naive PyPDF.
 - **Paragraph-aware token chunking.** Keeps chunks readable while enforcing tokenizer-based size limits, reducing broken context in generated answers.
 - **Hybrid retrieval over dense-only.** Dense embeddings capture semantic similarity; sparse BM25 retrieval preserves exact technical terms, formulas, and named concepts that semantic embeddings often blur.
 - **Reciprocal Rank Fusion before reranking.** Combines dense and sparse result lists without requiring score calibration between fundamentally different retrieval methods.
 - **CrossEncoder reranking.** Reranks candidate chunks with query–document interaction before generation, improving Context Precision and Faithfulness on the benchmark.
-- **Query rewrite is retrieval-only.** The rewritten query is used for search, but the original question is still used for answer generation — so the system never silently changes what the user asked.
+- **Query rewrite is retrieval-only.** The rewritten query is used for search, but the original question is still used for answer generation so the system never silently changes what the user asked.
 - **Bounded chat history.** Keeps follow-up questions useful while capping prompt size and avoiding runaway context growth.
 - **Visible evidence and scores.** Citations, source chunks, retrieval/rerank scores, and a confidence label make the system inspectable instead of opaque.
 - **Lifespan model preload.** SentenceTransformer, BM25, tokenizer, and CrossEncoder are loaded once at startup, not during user requests.
