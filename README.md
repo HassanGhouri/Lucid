@@ -24,8 +24,8 @@ To add: place image at docs/screenshots/qa-view.png and replace this comment wit
 - **End-to-end RAG architecture, not a chatbot wrapper.** Ingestion (Docling parsing, paragraph-aware token chunking), retrieval (dense MiniLM + BM25 sparse fused with Reciprocal Rank Fusion), reranking (CrossEncoder), and generation (OpenAI `gpt-4.1-mini`) built as separable, testable components.
 - **Measured retrieval quality on a hand-built benchmark.** 100-question academic QA dataset across 4 real textbooks and course notes, scored with RAGAS (Faithfulness, Answer Relevancy, Context Precision, Context Recall) plus a custom OpenAI LLM-as-judge (Grounding, Correctness, Usefulness).
 - **Production-grade service posture.** Async FastAPI with model preload at startup, CrossEncoder warmup, request timeouts, per-call OpenAI timeouts, SlowAPI rate limits, `/metrics` and `/healthz`, multi-worker Uvicorn, and CORS controls.
-- **Transparent, inspectable answers.** Each answer ships with citations, page numbers, retrieved chunks, retrieval and rerank scores, an LLM grounding judge, and — when LangSmith is enabled — a per-answer trace URL.
-- **Multi-tenant demo without auth.** Public preloaded documents alongside per-anonymous-session private uploads with 24-hour TTL cleanup — visible to the uploader, invisible to other anonymous users.
+- **Transparent, inspectable answers.** Each answer ships with citations, page numbers, retrieved chunks, retrieval and rerank scores, an LLM grounding judge. When LangSmith is enabled, a per-answer trace URL.
+- **Multi-tenant demo without auth.** Public preloaded documents alongside per-anonymous-session private uploads with 24-hour TTL cleanup, visible to the uploader, invisible to other anonymous users.
 
 ## Evaluation
 
