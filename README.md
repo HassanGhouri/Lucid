@@ -208,7 +208,7 @@ ASCII fallback (in case Mermaid doesn't render in some viewers):
 ## Observability
 
 - LangSmith tracing covers every stage of the request path: query rewrite, dense/sparse embedding, hybrid retrieval, reranking, prompt build, answer generation, grounding judge, and confidence build.
-- Trace payloads are sanitized — chunk text is truncated, embedding vectors and raw payloads are dropped — so traces stay cheap and PII-conscious.
+- Trace payloads are sanitized. Chunk text is truncated, embedding vectors and raw payloads are dropped, so traces stay cheap and PII-conscious.
 - Each answer surfaces a "View LangSmith trace" link in the frontend when tracing is enabled, so any answer can be opened and inspected end-to-end.
 - `/metrics` complements LangSmith with cheap in-process P50/P95 numbers per stage, plus a one-time `cold_start_ms` captured at lifespan startup.
 
