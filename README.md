@@ -75,9 +75,9 @@ To add: place image at docs/screenshots/eval-page.png and replace this comment w
 
 ### Takeaway
 
-Hybrid retrieval improves recall over dense-only retrieval. CrossEncoder reranking improves Faithfulness and Context Precision. Query rewriting nudges Answer Relevancy higher but trades a hair of Faithfulness. **The best overall measured configuration is Hybrid + Rerank**, which is what runs in production by default.
+Hybrid retrieval improves recall over dense-only retrieval. CrossEncoder reranking improves Faithfulness and Context Precision. Query rewriting nudges Answer Relevancy higher but trades a hair of Faithfulness. **The best overall measured configuration is Hybrid + Rerank**, which is what runs in production by default with the option to enable query rewrite.
 
-The production reranker is the smaller `cross-encoder/ms-marco-MiniLM-L-6-v2` (chosen for lower latency and memory vs the larger Electra variant). A judge-only recheck under MiniLM held at Grounding 0.992–0.995, Correctness 0.999–1.000, Usefulness 0.993–0.995 — no meaningful regression.
+The production reranker is the smaller `cross-encoder/ms-marco-MiniLM-L-6-v2` (chosen for lower latency and memory vs the larger Electra variant). A judge-only recheck under MiniLM held at Grounding 0.992–0.995, Correctness 0.999–1.000and Usefulness 0.993–0.995. No meaningful regression.
 
 ### Reproducing the evaluation
 
