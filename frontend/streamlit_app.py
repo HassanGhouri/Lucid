@@ -42,8 +42,8 @@ PRELOADED_DOCS = [
     },
     {
         "key": "csc263",
-        "title": "CSC263",
-        "subtitle": "Data structures & analysis",
+        "title": "Data structures & analysis",
+        "subtitle": "Course Notes",
         "doc_name": "csc263_notes 2.pdf",
         "accent": "#F59E0B",
         "example_questions": [
@@ -54,8 +54,8 @@ PRELOADED_DOCS = [
     },
     {
         "key": "mat102",
-        "title": "MAT102",
-        "subtitle": "Foundations of mathematics",
+        "title": "Foundations of mathematics",
+        "subtitle": "Course Notes",
         "doc_name": "MAT102-Notes-2017-Version1 copy 2.pdf",
         "accent": "#EC4899",
         "example_questions": [
