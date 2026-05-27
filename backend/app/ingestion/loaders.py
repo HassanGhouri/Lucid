@@ -25,6 +25,10 @@ def _build_pdf_converter() -> DocumentConverter:
     pipeline_options.accelerator_options = AcceleratorOptions(
         device=AcceleratorDevice.CPU,
     )
+    # Disable heavyweight sub-models that are not needed for digital PDFs
+    # (already-embedded text). Cuts peak RAM by ~1.5 GB on Railway.
+    pipeline_options.do_ocr = False
+    pipeline_options.do_table_structure = False
 
     return DocumentConverter(
         format_options={
