@@ -5,6 +5,14 @@ __pycache__/
 .DS_Store
 .idea/
 .streamlit/secrets.toml
-data/uploads/
+data/uploads/*
+# Bake the 4 demo PDFs into the image so citation click-through works for
+# public demo docs on Railway. User-uploaded PDFs still hit the gitignore.
+# (The trailing /* on the parent rule — not /, just the directory itself —
+# is what lets these ! re-includes take effect.)
+!data/uploads/RLbook2020 2.pdf
+!data/uploads/operating_systems_three_easy_pieces 2.pdf
+!data/uploads/csc263_notes 2.pdf
+!data/uploads/MAT102-Notes-2017-Version1 copy 2.pdf
 backend/app/eval/results*/
 docs/loadtest_results/

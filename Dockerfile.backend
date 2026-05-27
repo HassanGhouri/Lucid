@@ -46,6 +46,10 @@ COPY --chown=app:app requirements.txt .
 
 COPY --chown=app:app backend ./backend
 COPY --chown=app:app scripts ./scripts
+# Bake the 4 public demo PDFs into the image so /pdfs/{name} can serve
+# them for citation click-through. User uploads still land in this same
+# directory at runtime; they live until the container restarts.
+COPY --chown=app:app data/uploads ./data/uploads
 
 USER app
 EXPOSE 8000
