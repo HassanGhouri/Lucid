@@ -37,17 +37,20 @@ def get_qdrant_client() -> QdrantClient:
 
     return QdrantClient(**client_kwargs)
 
+
 def create_collection_if_not_exists(client: QdrantClient, dense_vector_size: int) -> None:
     """
     Create the Lucid Qdrant collection if it does not already exist.
 
-    The collection stores one vector per document chunk using cosine similarity,
-    which is appropriate for normalized SentenceTransformer embeddings.
+    Also creates payload indexes for the fields used in retrieval filters.
+    Qdrant Cloud strictly requires an index on any field used in
+    FieldCondition / IsEmpty / IsNull / Range filters; self-hosted Qdrant
+    tolerates filtering without indexes. create_payload_index is idempotent
+    in effect — calling it for an existing index just returns success.
 
     Args:
         client: Active Qdrant client.
         dense_vector_size: Size of dense vectors.
-
     """
     if not client.collection_exists(collection_name=COLLECTION_NAME):
         client.create_collection(
@@ -62,6 +65,29 @@ def create_collection_if_not_exists(client: QdrantClient, dense_vector_size: int
                 settings.sparse_vector_name: SparseVectorParams()
             },
         )
+
+    # Fields used in filters across filters.py and qdrant_store.py.
+    payload_indexes = [
+        ("visibility", "keyword"),
+        ("owner_id", "keyword"),
+        ("tag_name", "keyword"),
+        ("doc_name", "keyword"),
+        ("source_type", "keyword"),
+        ("uploaded_at_epoch", "float"),
+    ]
+
+    for field_name, field_schema in payload_indexes:
+        try:
+            client.create_payload_index(
+                collection_name=COLLECTION_NAME,
+                field_name=field_name,
+                field_schema=field_schema,
+            )
+        except Exception:
+            # Index already exists or was created concurrently — both are
+            # safe to ignore since the desired state (index present) holds.
+            pass
+
 
 def _stable_point_id(chunk: dict[str, Any]) -> str:
     """
