@@ -14,7 +14,7 @@ COPY requirements.txt .
 # nvidia-cufft, triton, and other CUDA libraries (~3 GB) that can't be used
 # on Railway (no GPU instances). The subsequent `pip install -r` sees
 # torch==2.12.0 is already satisfied and skips reinstalling.
-RUN pip install --user torch==2.12.0 --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --user torch==2.12.0 torchvision --index-url https://download.pytorch.org/whl/cpu
 RUN pip install --user -r requirements.txt
 
 
