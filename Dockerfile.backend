@@ -25,6 +25,12 @@ ENV HF_HOME=/app/models \
     PYTHONPATH=/home/app/.local/lib/python3.11/site-packages \
     PYTHONUNBUFFERED=1
 
+# System libs required by docling_ibm_models -> opencv-python (libGL +
+# glib). python:3.11-slim is too minimal to satisfy these by default.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgl1 libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN useradd --create-home --shell /usr/sbin/nologin app \
     && mkdir -p /app/models \
     && chown -R app:app /app
