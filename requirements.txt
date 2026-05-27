@@ -10,7 +10,7 @@ langchain-openai==0.1.25
 langsmith==0.1.147
 numpy==1.26.4
 openai==1.109.1
-pandas==3.0.3
+pandas==2.2.3
 pydantic==2.13.4
 pydantic-settings==2.14.1
 python-dotenv==1.2.2
