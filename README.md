@@ -13,11 +13,7 @@ Lucid is a production-style RAG system for grounded Q&A over academic PDFs. Hybr
 
 > **Live demo:** deploying to Railway — see [Roadmap](#roadmap).
 
-<!--
-Screenshot 1: Q&A view with citations.
-To add: place image at docs/screenshots/qa-view.png and replace this comment with:
-![Lucid Q&A view](docs/screenshots/qa-view.png)
--->
+![Lucid Q&A view with citations and confidence panel](docs/screenshots/qa-view.png)
 
 ## What This Demonstrates
 
@@ -67,11 +63,7 @@ Four retrieval/generation modes compared head-to-head on the same 100 examples:
 | Hybrid + Rerank | **0.962** | 0.894 | **0.830** | **0.982** | **0.993** | **1.000** | 0.991 |
 | Hybrid + Rerank + Rewrite | 0.956 | **0.898** | 0.828 | 0.977 | 0.993 | **1.000** | **0.992** |
 
-<!--
-Screenshot 2: In-app Evaluation page.
-To add: place image at docs/screenshots/eval-page.png and replace this comment with:
 ![Lucid in-app evaluation page](docs/screenshots/eval-page.png)
--->
 
 ### Takeaway
 
@@ -212,11 +204,7 @@ ASCII fallback (in case Mermaid doesn't render in some viewers):
 - Each answer surfaces a "View LangSmith trace" link in the frontend when tracing is enabled, so any answer can be opened and inspected end-to-end.
 - `/metrics` complements LangSmith with cheap in-process P50/P95 numbers per stage, plus a one-time `cold_start_ms` captured at lifespan startup.
 
-<!--
-Screenshot 3: LangSmith trace for one answer.
-To add: place image at docs/screenshots/langsmith-trace.png and replace this comment with:
-![Lucid LangSmith trace](docs/screenshots/langsmith-trace.png)
--->
+![LangSmith trace for one /ask_question call](docs/screenshots/langsmith-trace.png)
 
 ## Privacy & Multi-Tenancy
 
@@ -285,17 +273,26 @@ BACKEND_URL=http://localhost:8000 streamlit run frontend/streamlit_app.py
 
 ## Performance
 
-Lucid is instrumented end-to-end and ready for deploy-time load testing:
+Lucid is instrumented end-to-end and load-tested against the production Railway deployment:
 
 - `/metrics` exposes cold-start and per-stage P50/P95 latency snapshots.
 - `scripts/benchmark.py` runs sequential single-user benchmarks and prints both client wall-clock latency and the server-side `/metrics` breakdown.
-- A Locust harness drives concurrent multi-user load.
+- `scripts/loadtest/locustfile.py` drives concurrent multi-user load against `/ask_question`.
 
-Production numbers will be published here after the Railway deployment.
+### Production load test
 
-| Stage | P50 (ms) | P95 (ms) |
-|---|---:|---:|
-| Full `/ask_question` | — | — |
+Locust driving `/ask_question` against the deployed Railway backend (single CPU container, CPU-only embed + rerank), 5 minutes per concurrency level, realistic 1–3s think time between turns:
+
+| Concurrent users | Requests | Failures | P50 | P95 |
+|---:|---:|---:|---:|---:|
+| 1  | 17  | 0 (0%) | 14.0 s | 28.0 s |
+| 5  | 77  | 0 (0%) | 15.0 s | 28.0 s |
+| 10 | 90  | 0 (0%) | 18.0 s | 69.0 s |
+| 20 | 164 | 0 (0%) | 28.0 s | 71.0 s |
+
+**Takeaway.** The system sustains 20 concurrent anonymous users with **zero failures** across 348 requests. Latency stays flat through ~5 concurrent users (P95 ≈ 28 s); above that, the single Railway CPU instance becomes the bottleneck and P95 climbs to ~70 s — expected for CPU-only CrossEncoder rerank on one container. Horizontal scaling (more workers / replicas) or GPU-backed rerank would lift the ceiling; a single-instance CPU baseline is the honest deploy-day number.
+
+Raw CSVs: `docs/loadtest_results/loadtest_{1,5,10,20}users_stats.csv`.
 
 ## Deployment
 
@@ -308,7 +305,7 @@ Production deployment runs on Railway, with the vector database hosted on Qdrant
 
 The same Dockerfiles back the local `docker-compose.yml` setup, so the dev and prod paths share their build configuration.
 
-Live URL: deploying.
+Live demo: https://lucid-frontend-production-64aa.up.railway.app
 
 ## Roadmap
 

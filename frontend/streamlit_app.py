@@ -742,6 +742,14 @@ with st.sidebar:
         st.session_state.current_page = "eval"
     else:
         st.session_state.current_page = "chat"
+
+    st.markdown(
+        '<div style="margin: 0.25rem 0 0.5rem 0; font-size: 0.85rem; opacity: 0.75;">'
+        '<a href="https://github.com/HassanGhouri/Lucid" target="_blank" '
+        'style="color: inherit; text-decoration: none;">'
+        'View on GitHub →</a></div>',
+        unsafe_allow_html=True,
+    )
     st.markdown("---")
 
     st.markdown('<div class="small-section-title">Upload a PDF</div>', unsafe_allow_html=True)
@@ -1160,6 +1168,39 @@ def render_eval_page() -> None:
         st.markdown("### Takeaway")
         st.markdown(bench["takeaway"])
 
+    # -------------------------
+    # Production load test
+    # -------------------------
+    st.markdown("---")
+    st.markdown("## Production load test")
+    st.markdown(
+        "Locust driving `/ask_question` against the deployed Railway backend "
+        "(single CPU container, CPU-only embed + rerank), 5 minutes per "
+        "concurrency level with realistic 1–3 s think time between turns."
+    )
+
+    loadtest_df = pd.DataFrame(
+        [
+            {"Concurrent users": 1,  "Requests": 17,  "Failures": 0, "P50 (s)": 14.0, "P95 (s)": 28.0},
+            {"Concurrent users": 5,  "Requests": 77,  "Failures": 0, "P50 (s)": 15.0, "P95 (s)": 28.0},
+            {"Concurrent users": 10, "Requests": 90,  "Failures": 0, "P50 (s)": 18.0, "P95 (s)": 69.0},
+            {"Concurrent users": 20, "Requests": 164, "Failures": 0, "P50 (s)": 28.0, "P95 (s)": 71.0},
+        ]
+    ).set_index("Concurrent users")
+
+    st.dataframe(loadtest_df, use_container_width=True)
+
+    st.markdown("### Takeaway")
+    st.markdown(
+        "The system sustains **20 concurrent anonymous users with zero failures** "
+        "across 348 total requests. Latency stays flat through ~5 concurrent users "
+        "(P95 ≈ 28 s); above that, the single Railway CPU instance becomes the "
+        "bottleneck and P95 climbs to ~70 s — expected for CPU-only CrossEncoder "
+        "rerank on one container. Horizontal scaling or GPU-backed rerank would "
+        "lift the ceiling; a single-instance CPU baseline is the honest "
+        "deploy-day number."
+    )
+
     st.markdown("---")
     st.caption("More benchmarks will be added here as they're run.")
 
@@ -1409,8 +1450,8 @@ def render_landing_screen() -> None:
     st.markdown(
         """<div style="width: min(100%, 1600px); margin: 1.5rem auto 0 auto; max-height: 66vh; overflow-y: auto; padding: 0 0.45rem 0 0.15rem;">
 
-<div style="margin: 0 0 1.25rem 0; font-size: 1.22rem; line-height: 1.9; opacity: 0.95; text-align: left; width: 100%;">
-Lucid is an AI study assistant for asking grounded questions over academic PDFs. It is built to feel like a real product: select a preloaded technical document or upload your own, ask a question, and get an answer backed by citations, retrieved evidence, confidence scoring, and evaluation-aware system design. Unlike a simple chatbot, Lucid shows how the answer was produced — what sources were retrieved, how they were ranked, and how confident the system is in the response.
+<div style="margin: 0 0 1.5rem 0; font-size: 1.22rem; line-height: 1.75; opacity: 0.95; text-align: left; width: 100%;">
+Lucid answers questions over academic PDFs with grounded citations. Pick a preloaded document or upload your own, ask a question, and see the answer alongside the sources it used, how they were ranked, and how confident the system is.
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
@@ -1419,27 +1460,12 @@ Lucid is an AI study assistant for asking grounded questions over academic PDFs.
 <div style="font-size: 1.22rem; font-weight: 800; margin-bottom: 0.9rem;">
 How to use it
 </div>
-<ul style="margin: 0; padding-left: 1.35rem; font-size: 1.12rem; line-height: 1.9; opacity: 0.95;">
-<li>Select one of the preloaded documents below, or upload your own PDFs from the sidebar.</li>
-<li>Ask a question using the search bar at the bottom of the page.</li>
-<li>Optionally select document and tag filters to refine which sources are searched.</li>
-<li>Optionally enable Query Rewrite to let AI refine your question for stronger retrieval quality.</li>
-<li>Review the answer, citations, confidence score, and retrieved evidence in the sidebar to judge how well-supported the answer is.</li>
-<li>Open the retrieval query panel to see how the system rewrote your question for better search.</li>
-</ul>
-</div>
-
-<div style="border: 1px solid rgba(255,255,255,0.10); border-radius: 0.85rem; padding: 1.35rem 1.5rem; background: rgba(255,255,255,0.02); width: 100%; box-sizing: border-box;">
-<div style="font-size: 1.22rem; font-weight: 800; margin-bottom: 0.9rem;">
-What it does
-</div>
-<ul style="margin: 0; padding-left: 1.35rem; font-size: 1.12rem; line-height: 1.9; opacity: 0.95;">
-<li>Answers questions using retrieved evidence from uploaded or preloaded academic PDFs.</li>
-<li>Supports multi-document Q&amp;A with document and tag filtering.</li>
-<li>Shows citations, source chunks, page ranges, retrieval scores, rerank scores, and confidence.</li>
-<li>Uses query rewriting to improve retrieval quality while preserving the original user question for answer generation.</li>
-<li>Estimates answer quality using retrieval signals, rerank scores, and an LLM grounding judge.</li>
-<li>Includes a serious evaluation pipeline comparing retrieval modes across a curated 100-question dataset.</li>
+<ul style="margin: 0; padding-left: 1.35rem; font-size: 1.12rem; line-height: 1.8; opacity: 0.95;">
+<li>Pick a preloaded document below, or upload your own from the sidebar.</li>
+<li>Ask a question in the bar at the bottom.</li>
+<li>Filter by document or tag in the sidebar to narrow the search.</li>
+<li>Toggle Query Rewrite to let the model refine your question for stronger retrieval.</li>
+<li>Inspect citations, confidence, and retrieved evidence in the sidebar to see how the answer was grounded.</li>
 </ul>
 </div>
 
@@ -1447,15 +1473,14 @@ What it does
 <div style="font-size: 1.22rem; font-weight: 800; margin-bottom: 0.9rem;">
 Under the hood
 </div>
-<ul style="margin: 0; padding-left: 1.35rem; font-size: 1.12rem; line-height: 1.9; opacity: 0.95;">
-<li><b>Ingestion:</b> Docling parses PDFs, then a custom paragraph-aware, token-counted chunker preserves readable context and page metadata.</li>
-<li><b>Retrieval:</b> SentenceTransformers dense embeddings + FastEmbed BM25 sparse embeddings are stored in Qdrant.</li>
-<li><b>Hybrid search:</b> Dense and sparse results are fused with Reciprocal Rank Fusion for stronger semantic + keyword retrieval.</li>
-<li><b>Reranking:</b> A CrossEncoder reranks retrieved chunks before answer generation.</li>
-<li><b>Generation:</b> OpenAI gpt-4.1-mini generates citation-aware answers grounded in retrieved sources.</li>
-<li><b>System intelligence:</b> query rewriting, grounding judge, confidence scoring, score display, and fail-safe fallbacks.</li>
-<li><b>Evaluation:</b> RAGAS metrics + custom LLM-as-judge compare Dense, Hybrid, Hybrid + Rerank, and Hybrid + Rerank + Rewrite modes.</li>
-<li><b>Observability:</b> LangSmith traces rewrite, retrieval, reranking, prompt build, generation, judge, confidence, and latency.</li>
+<ul style="margin: 0; padding-left: 1.35rem; font-size: 1.12rem; line-height: 1.8; opacity: 0.95;">
+<li><b>Ingestion:</b> Docling layout-aware parsing + paragraph-aware token chunking.</li>
+<li><b>Retrieval:</b> Dense (SentenceTransformers) + sparse (BM25) embeddings in Qdrant, fused via Reciprocal Rank Fusion.</li>
+<li><b>Reranking:</b> CrossEncoder reranks fused candidates before generation.</li>
+<li><b>Generation:</b> OpenAI gpt-4.1-mini produces citation-grounded answers.</li>
+<li><b>Quality:</b> query rewriting, grounding judge, confidence scoring, soft-guard fallbacks.</li>
+<li><b>Eval:</b> RAGAS + LLM-as-judge across Dense / Hybrid / Rerank / Rewrite modes.</li>
+<li><b>Observability:</b> LangSmith traces every stage; <code>/metrics</code> exposes P50/P95.</li>
 <li><b>Stack:</b> FastAPI · Streamlit · Qdrant · OpenAI · SentenceTransformers · FastEmbed · CrossEncoder · Docling · RAGAS · LangSmith.</li>
 </ul>
 </div>
