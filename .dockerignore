@@ -1,7 +1,13 @@
 .venv
 __pycache__
 .git
-data/uploads
+data/uploads/*
+# Re-include the 4 public demo PDFs so they ship inside the image and
+# /pdfs/{name} can serve them for citation click-through.
+!data/uploads/RLbook2020 2.pdf
+!data/uploads/operating_systems_three_easy_pieces 2.pdf
+!data/uploads/csc263_notes 2.pdf
+!data/uploads/MAT102-Notes-2017-Version1 copy 2.pdf
 backend/app/eval/results*
 *.pyc
 .env
