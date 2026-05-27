@@ -36,16 +36,16 @@ RUN useradd --create-home --shell /usr/sbin/nologin app \
     && chown -R app:app /app
 
 WORKDIR /app
-COPY --from=builder /root/.local /home/app/.local
-COPY requirements.txt .
+# Setting ownership at COPY time (--chown) instead of with a follow-up
+# `chown -R` keeps everything in one layer and avoids rewriting metadata
+# for the ~hundreds of thousands of files under /home/app/.local. The
+# trailing chown step was taking >20 min on Railway and tripping the
+# build heartbeat timeout; this gets us back to a single fast layer.
+COPY --chown=app:app --from=builder /root/.local /home/app/.local
+COPY --chown=app:app requirements.txt .
 
-# RUN python -c "from sentence_transformers import SentenceTransformer, CrossEncoder; SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2'); CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')"
-# RUN python -c "from fastembed import SparseTextEmbedding; SparseTextEmbedding(model_name='Qdrant/bm25')"
-
-COPY backend ./backend
-COPY scripts ./scripts
-
-RUN chown -R app:app /app /home/app/.local
+COPY --chown=app:app backend ./backend
+COPY --chown=app:app scripts ./scripts
 
 USER app
 EXPOSE 8000
